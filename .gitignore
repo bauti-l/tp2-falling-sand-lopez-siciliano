@@ -1,0 +1,27 @@
+# Leiningen y Clojure
+pom.xml.asc
+*.jar
+*.class
+/lib/
+/classes/
+/target/
+/checkouts/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.lein-failures
+.nrepl-port
+.cpcache/
+
+# Archivos que generan los IDE. Se versionan solo las configuraciones de
+# ejecucion compartidas: .vscode/tasks.json y la carpeta .run/ de IntelliJ.
+.idea/
+*.iml
+.vscode/*
+!.vscode/tasks.json
+.classpath
+.project
+.settings/
+.calva/
+.lsp/
+.clj-kondo/
