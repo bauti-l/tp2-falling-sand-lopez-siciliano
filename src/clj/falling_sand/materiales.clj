@@ -36,3 +36,27 @@
             :decaimiento {:destino :agua :periodo 100}}
    :fuego  {:simbolo \f :color 0xFFFFC020 :tipo :gas :densidad -2
             :decaimiento {:destino :aire :periodo 10}}})
+            
+(def reacciones
+  "Tabla de reacciones del enunciado 5.3: mapa del conjunto de los dos
+  materiales que reaccionan a los datos de la reacción.
+
+  La clave es un conjunto porque la reacción vale con los materiales en
+  cualquiera de los dos órdenes. El valor es un mapa con:
+    :periodo    período N de la decisión que habilita la reacción.
+    :resultado  mapa de cada material de la clave al material en que se
+                convierte. Un material que la reacción no cambia figura
+                convertido en sí mismo.
+
+  Se consulta con `reaccion`."
+  {#{:fuego :agua}   {:periodo 2  :resultado {:fuego :aire   :agua :vapor}}
+   #{:agua :lava}    {:periodo 2  :resultado {:agua :vapor   :lava :piedra}}
+   #{:arena :lava}   {:periodo 20 :resultado {:arena :vidrio :lava :lava}}
+   #{:fuego :madera} {:periodo 20 :resultado {:fuego :fuego  :madera :fuego}}
+   #{:lava :madera}  {:periodo 5  :resultado {:lava :lava    :madera :fuego}}})
+
+(def orden-selector
+  "Vector con los diez materiales en el orden en que los muestra el selector de
+  la interfaz (enunciado 3): aire, pared, arena, agua, vapor, lava, fuego,
+  madera, piedra, vidrio."
+  [:aire :pared :arena :agua :vapor :lava :fuego :madera :piedra :vidrio])
