@@ -36,7 +36,7 @@
             :decaimiento {:destino :agua :periodo 100}}
    :fuego  {:simbolo \f :color 0xFFFFC020 :tipo :gas :densidad -2
             :decaimiento {:destino :aire :periodo 10}}})
-            
+
 (def reacciones
   "Tabla de reacciones del enunciado 5.3: mapa del conjunto de los dos
   materiales que reaccionan a los datos de la reacción.
@@ -60,3 +60,41 @@
   la interfaz (enunciado 3): aire, pared, arena, agua, vapor, lava, fuego,
   madera, piedra, vidrio."
   [:aire :pared :arena :agua :vapor :lava :fuego :madera :piedra :vidrio])
+
+(defn tipo
+  "Tipo de un material (enunciado 5.1). Recibe el material y devuelve :vacio,
+  :fijo, :polvo, :liquido o :gas.
+
+  Para un keyword que no está en la tabla, o para nil, devuelve nil, sin
+  error. La regla del bloque lo trata entonces como no fijo, con densidad 0 y
+  período 1 (los valores por defecto de `densidad` y `periodo`), sin
+  decaimiento ni reacciones. Acá no se valida: rechazar un material
+  desconocido le corresponde a quien lo recibe de afuera del núcleo."
+  [material]
+  (get-in materiales [material :tipo]))
+
+(defn densidad
+  "Densidad de un material. Recibe el material y devuelve un entero: el de la
+  tabla 5.2, o 0 si el material no la define (enunciado 5.1)."
+  [material]
+  (get-in materiales [material :densidad] 0))
+
+(defn periodo
+  "Período de movimiento de un material. Recibe el material y devuelve un
+  entero: el de la tabla 5.2, o 1 si el material no lo define (enunciado 5.1)."
+  [material]
+  (get-in materiales [material :periodo] 1))
+
+(defn decaimiento
+  "Decaimiento de un material (enunciado 5.1 y 5.2). Recibe el material y
+  devuelve el mapa {:destino material, :periodo N}, o nil si el material no
+  decae."
+  [material]
+  (get-in materiales [material :decaimiento]))
+
+(defn reaccion
+  "Reacción entre dos materiales (enunciado 5.3). Recibe los dos materiales, en
+  cualquier orden, y devuelve el mapa {:periodo N, :resultado {...}} de la tabla
+  `reacciones`, o nil si no reaccionan entre sí."
+  [a b]
+  (get reacciones (hash-set a b)))
