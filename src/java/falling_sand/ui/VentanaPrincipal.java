@@ -25,5 +25,37 @@ public final class VentanaPrincipal {
         this.motor = motor;
         this.controles = new PanelControles(motor);
         this.grilla = new VistaGrilla(motor, controles);
+        this.reloj = new Timeline(new KeyFrame(Duration.seconds(1.0 / 60), evento -> alPulso()));
+        reloj.setCycleCount(Animation.INDEFINITE);
+        this.escenario = new Stage();
+        escenario.setTitle(TITULO);
+        HBox.setMargin(grilla.nodo(), new Insets(PanelControles.MARGEN));
+        HBox raiz = new HBox(grilla.nodo(), controles.nodo());
+        raiz.setAlignment(Pos.CENTER_LEFT);
+        escenario.setScene(new Scene(raiz));
+        escenario.setResizable(false);
+        escenario.setOnHidden(evento -> alCerrar());
+        dibujar(motor.cuadro());
+    }
+
+    public void mostrar() {
+        escenario.show();
+        reloj.play();
+    }
+
+    private void alPulso() {
+        motor.pulso();
+        dibujar(motor.cuadro());
+    }
+
+    private void dibujar(Cuadro cuadro) {
+        grilla.dibujar(cuadro);
+        controles.actualizar(cuadro);
+    }
+
+    private void alCerrar() {
+        reloj.stop();
+        motor.detener();
+        Platform.runLater(Platform::exit);
     }
 }
