@@ -61,6 +61,9 @@ lein run -m falling-sand.medicion
 
 Abrir el proyecto como proyecto de Maven (`pom.xml`) y, desde el panel de Maven, ejecutar `compile clojure:run`. Esto corre la función `-main` de `src/clj/falling_sand/core.clj`, que abre la aplicación.
 
+## Video 
+- [Video Franco Siciliano - TP2](https://youtu.be/6ZiLhJtzv4c)
+
 ## Integrantes
 
 - Franco Siciliano - Padrón 108157
