@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>falling-sand</groupId>
+  <artifactId>falling-sand</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>falling-sand</name>
+  <description>Simulador de materiales (falling sand). TP2 de TB025 Paradigmas de Programacion, FIUBA.</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojure</artifactId>
+      <version>1.12.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>21.0.13</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Codigo Java: todo lo que este dentro de src/java -->
+    <sourceDirectory>src/java</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>com.theoryinpractise</groupId>
+        <artifactId>clojure-maven-plugin</artifactId>
+        <version>1.9.4</version>
+        <configuration>
+          <!-- Codigo Clojure: todo lo que este dentro de src/clj -->
+          <sourceDirectories>
+            <sourceDirectory>src/clj</sourceDirectory>
+          </sourceDirectories>
+          <!-- Tests de Clojure: todo lo que este dentro de test -->
+          <testSourceDirectories>
+            <testSourceDirectory>test</testSourceDirectory>
+          </testSourceDirectories>
+          <!-- Abre la aplicacion con el -main de falling-sand.core -->
+          <mainClass>clojure.main</mainClass>
+          <args>-m falling-sand.core</args>
+        </configuration>
+        <executions>
+          <execution>
+            <id>tests-de-clojure</id>
+            <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
