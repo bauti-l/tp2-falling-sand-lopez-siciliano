@@ -64,6 +64,8 @@ Abrir el proyecto como proyecto de Maven (`pom.xml`) y, desde el panel de Maven,
 ## Video 
 - [Video Franco Siciliano - TP2](https://youtu.be/6ZiLhJtzv4c)
 
+- [Video Lopez Bautista - TP2](https://drive.google.com/file/d/1vXTqp5pKOP84568Z8FAnAToJ_UTDh2tq/view?usp=sharing)
+
 ## Integrantes
 
 - Franco Siciliano - Padrón 108157
